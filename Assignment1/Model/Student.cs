@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Assignment1
+namespace Assignment1.Model
 {
     sealed class Student: Person
     {
@@ -19,6 +19,7 @@ namespace Assignment1
         public string StudentProgram { get; set; }
         public string StudentDateRegistered { get; set; }
         public Enrollment StudentEnrollment { get; set; }
+        public Address StudentAddress { get; set; }
 
         // no arg constructor
         public Student() : this(DEF_STUDENT_ID, DEF_PROGRAM, DEF_DATE_REGISTERED, DEF_NAME, DEF_EMAIL, DEF_PHONE_NUMBER)
@@ -26,18 +27,25 @@ namespace Assignment1
 
         }
 
-        // all arg constructors
-        public Student(int studentID, string program, string dateRegistered, string name, string email, string phoneNumber) : this(studentID, program, dateRegistered, name, email, phoneNumber, new Enrollment()) 
+        // studentID constructor
+        public Student(int studentID) : this(studentID, DEF_PROGRAM, DEF_DATE_REGISTERED, DEF_NAME, DEF_EMAIL, DEF_PHONE_NUMBER)
         {
 
         }
 
-        public Student(int studentID, string program, string dateRegistered, string name, string email, string phoneNumber, Enrollment enrollment) : base(name, email, phoneNumber)
+        // all arg constructors
+        public Student(int studentID, string program, string dateRegistered, string name, string email, string phoneNumber) : this(studentID, program, dateRegistered, name, email, phoneNumber, new Enrollment(), new Address()) 
+        {
+
+        }
+
+        public Student(int studentID, string program, string dateRegistered, string name, string email, string phoneNumber, Enrollment enrollment, Address address) : base(name, email, phoneNumber)
         {
             this.StudentID = studentID;
             this.StudentProgram = program;
             this.StudentDateRegistered = dateRegistered;
             this.StudentEnrollment = enrollment;
+            this.StudentAddress = address;
         }
 
         // ToString for output of Student details
@@ -49,10 +57,10 @@ namespace Assignment1
         /// <summary>
         /// Method to hash the StudentID
         /// </summary>
-        /// <returns></returns>
+        /// <returns>base.GetHashCode() and StudentID.GetHashCode()</returns>
         public override int GetHashCode()
         {
-            return base.GetHashCode() ^ this.StudentID.GetHashCode();
+            return this.StudentID.GetHashCode();
         }
 
         /// <summary>
@@ -64,10 +72,7 @@ namespace Assignment1
         {
             if (!base.Equals(obj)) return false;
             Student student = (Student)obj;
-            return base.Equals(obj)
-                && this.StudentID == student.StudentID 
-                && this.StudentProgram == student.StudentProgram 
-                && this.StudentDateRegistered == student.StudentDateRegistered;
+            return base.Equals(obj) && this.StudentID == student.StudentID;
         }
 
         /// <summary>

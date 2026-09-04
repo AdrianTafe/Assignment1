@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment1
+namespace Assignment1.Model
 {
     internal class Address
     {
         // Define constants
-        const int DEF_STREET_NUM = 0;
+        const string DEF_STREET_NUM = "Unknown";
         const string DEF_STREET_NAME = "Unknown";
         const string DEF_SUBURB = "Unknown";
         const string DEF_POSTCODE = "Unknown";
         const string DEF_STATE = "Unknown";
 
         // Define variables
-        private int streetNum;
+        private string streetNum;
         private string streetName;
         private string suburb;
         private string postcode;
         private string state;
 
         // Property Assessor Methods
-        public int StreetNum { get; set; }
+        public string StreetNum { get; set; }
         public string StreetName { get; set; }
         public string Suburb { get; set; }
         public string Postcode { get; set; }
@@ -34,7 +34,7 @@ namespace Assignment1
         }
 
         // all arg constructor
-        public Address(int streetNum, string streetName, string suburb, string postcode, string state)
+        public Address(string streetNum, string streetName, string suburb, string postcode, string state)
         {
             StreetNum = streetNum;
             StreetName = streetName;

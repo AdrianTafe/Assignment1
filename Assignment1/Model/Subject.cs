@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace Assignment1
+namespace Assignment1.Model
 {
     internal class Subject
     {
